@@ -15,7 +15,7 @@ describe('webdriver.io page', () => {
         browser.getTitle().should.be.equal('WebdriverIO - Selenium 2.0 javascript bindings for nodejs');
         //assert.strictEqual(title, 'WebdriverIO - Selenium 2.0 javascript bindings for nodejs');
     });
-    it('should go to GETSTARTED page', () => {
+    it('get GETSTARTED btn text', () => {
         var buttom = browser.elements('.getstarted');// or like jquery $('.getstarted')
         buttom.getText().should.be.equal('GET STARTED');
         buttom.getAttribute('href').should.be.equal('http://webdriver.io/guide.html');
