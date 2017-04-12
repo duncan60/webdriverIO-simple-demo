@@ -31,4 +31,12 @@ describe('github page', () => {
             customVal: 'foobar'
         });
     });
+    it("submit search input form", () => {
+        browser.setValue('.js-site-search-focus', 'duncan60');
+        browser
+            .submitForm('.js-site-search-form')
+            .pause(2000)
+        browser.getTitle().should.be.equal('Search · duncan60 · GitHub');
+
+    });
 });
