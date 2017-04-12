@@ -1,5 +1,3 @@
-var assert = require('assert');
-
 browser.addCommand("getUrlAndTitle", function(customVal) {
     return {
         url: this.getUrl(),
@@ -14,26 +12,23 @@ describe('webdriver.io page', () => {
     });
 
     it('should have the right title - the fancy generator way', () => {
-        var title = browser.getTitle();
-        assert.equal(title, 'WebdriverIO - Selenium 2.0 javascript bindings for nodejs');
+        browser.getTitle().should.be.equal('WebdriverIO - Selenium 2.0 javascript bindings for nodejs');
+        //assert.strictEqual(title, 'WebdriverIO - Selenium 2.0 javascript bindings for nodejs');
     });
     it('should go to GETSTARTED page', () => {
         var buttom = browser.elements('.getstarted');
-        assert.equal(buttom.getText(), 'GET STARTED');
-        assert.equal(buttom.getAttribute('href'), 'http://webdriver.io/guide.html');
+        buttom.getText().should.be.equal('GET STARTED');
+        buttom.getAttribute('href').should.be.equal('http://webdriver.io/guide.html');
     });
 });
 
 describe('github page', () => {
     it('should use my custom command', () => {
         browser.url('http://www.github.com');
-        var {
-            url,
-            title,
-            customVal,
-        } = browser.getUrlAndTitle('foobar');
-        assert.strictEqual(url, 'https://github.com/');
-        assert.strictEqual(title, 'The world\'s leading software development platform · GitHub');
-        assert.strictEqual(customVal, 'foobar');
+        browser.getUrlAndTitle('foobar').should.be.deep.equal({
+            url: 'https://github.com/',
+            title: 'The world\'s leading software development platform · GitHub',
+            customVal: 'foobar'
+        });
     });
 });
